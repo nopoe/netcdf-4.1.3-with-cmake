@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include "netcdf.h"
+#include "nc.h"
 
 /* The subroutines in error.c emit no messages unless NC_VERBOSE bit
  * is on.  They call exit() when NC_FATAL bit is on. */
@@ -38,7 +39,7 @@ int ncerr = NC_NOERR ;
  * any additional cost was lost in measurement variation.
  */
 
-# include "onstack.h"
+# include "../libsrc/onstack.h"
 
 static size_t
 nvdims(int ncid, int varid)

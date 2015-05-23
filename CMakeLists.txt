@@ -98,32 +98,6 @@ endif( ZLIB_FOUND )
 # build links to SZIP utility library
 # uses the SZIP_INSTALL variable as a hint
 
-if ( NOT DEFINED ${SZIP_INSTALL} ) 
-    if ( EXISTS $ENV{SZIP_INSTALL} )
-	set( SZIP_INSTALL $ENV{SZIP_INSTALL} CACHE PATH "Root directory for SZIP" )
-    endif()
-endif()
-if ( NOT DEFINED SZIP_LIBRARY )
-    find_package( SZIP REQUIRED )
-    if( SZIP_FOUND )
-        include_directories( ${SZIP_INCLUDE_DIRS} )
-        set( USE_SZIP YES )
-    endif( SZIP_FOUND )
-endif( NOT DEFINED SZIP_LIBRARY )
-
-# build links to HDF5 utility library
-# uses the HDF5_ROOT variable as a hint
-
-if ( NOT DEFINED ${HDF5_ROOT} ) 
-    if ( EXISTS $ENV{HDF5_ROOT} )
-	set( HDF5_ROOT $ENV{HDF5_ROOT} CACHE PATH "Root directory for HDF5" )
-    endif()
-endif()
-find_package( HDF5 )
-if( HDF5_FOUND )
-    include_directories( ${HDF5_INCLUDE_DIRS} )
-endif( HDF5_FOUND )
-
 #############################################
 # SYSTEM SPECIFIC CONFIGURATION
 # Uses the same order "configure.h.cmake" file

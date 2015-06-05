@@ -1,20 +1,20 @@
 # This is a project to create a Windows 7 compatible version of the
-# C++ interface to the netCDF 4.1.3 library. The Unidata network 
-# Common Data Form (netCDF) is an interface for scientific data 
+# C++ interface to the netCDF 4.1.3 library. The Unidata network
+# Common Data Form (netCDF) is an interface for scientific data
 # access and a freely-distributed software library that
-# provides an implementation of the interface.  
+# provides an implementation of the interface.
 #
-# The CMake utility will be used to create a platform independent 
-# build script that will support both Windows and Unix.  If 
-# successful, the goal is to turn this back over to Unidata as a 
-# possible replacement for their current Autoconf based system. 
+# The CMake utility will be used to create a platform independent
+# build script that will support both Windows and Unix.  If
+# successful, the goal is to turn this back over to Unidata as a
+# possible replacement for their current Autoconf based system.
 # There is not yet support in this script for the FORTRAN interface.
 #
 # The test platforms are:
 #
 # * Windows 7, 64-bit, Visual C++ 2010 Express Edition
 # * Unubtu 10.04 LTS, 32-bit, GNU C++ 4.4.3
-# 
+#
 
 cmake_minimum_required( VERSION 2.6 )
 project( netcdf C CXX )
@@ -69,13 +69,13 @@ set( ENABLE_BENCHMARKS OFF CACHE BOOL "run benchmarks experimental feature (requ
 set( ENABLE_EXTREME_NUMBERS ON CACHE BOOL "use extreme numbers during testing, such as MAX_INT - 1")
 set( TEMP_LARGE ${PROJECT_BINARY_DIR} CACHE PATH "Place to put very large netCDF test files.")
 
-mark_as_advanced( NCIO_MINBLOCKSIZE ENABLE_FSYNC ENABLE_VALGRIND_TESTS 
-    ENABLE_HDF4_FILE_TESTS ENABLE_EXTRA_EXAMPLE_TESTS ENABLE_PARALLEL_TESTS 
-    DEFAULT_CHUNK_SIZE MAX_DEFAULT_CACHE_SIZE DEFAULT_CHUNKS_IN_CACHE 
-    DEFAULT_CHUNKS_IN_CACHE DEFAULT_CHUNK_CACHE_SIZE CHUNK_CACHE_NELEMS 
+mark_as_advanced( NCIO_MINBLOCKSIZE ENABLE_FSYNC ENABLE_VALGRIND_TESTS
+    ENABLE_HDF4_FILE_TESTS ENABLE_EXTRA_EXAMPLE_TESTS ENABLE_PARALLEL_TESTS
+    DEFAULT_CHUNK_SIZE MAX_DEFAULT_CACHE_SIZE DEFAULT_CHUNKS_IN_CACHE
+    DEFAULT_CHUNKS_IN_CACHE DEFAULT_CHUNK_CACHE_SIZE CHUNK_CACHE_NELEMS
     CHUNK_CACHE_PREEMPTION ENABLE_LOGGING ENABLE_DAP_REMOTE_TESTS
-    ENABLE_EXTRA_TESTS ENABLE_FFIO ENABLE_EXAMPLES ENABLE_FORTRAN_TYPE_CHECK 
-    ENABLE_LARGE_FILE_TESTS ENABLE_BENCHMARKS ENABLE_EXTREME_NUMBERS 
+    ENABLE_EXTRA_TESTS ENABLE_FFIO ENABLE_EXAMPLES ENABLE_FORTRAN_TYPE_CHECK
+    ENABLE_LARGE_FILE_TESTS ENABLE_BENCHMARKS ENABLE_EXTREME_NUMBERS
     LARGE_TEMP_DIR )
 
 #############################################
@@ -84,7 +84,7 @@ mark_as_advanced( NCIO_MINBLOCKSIZE ENABLE_FSYNC ENABLE_VALGRIND_TESTS
 # build links to ZLIB utility library
 # uses the ZLIB_ROOT variable as a hint
 
-if ( NOT DEFINED ${ZLIB_ROOT} ) 
+if ( NOT DEFINED ${ZLIB_ROOT} )
     if ( EXISTS $ENV{ZLIB_ROOT} )
 	set( ZLIB_ROOT $ENV{ZLIB_ROOT} CACHE PATH "Root directory for ZLIB" )
     endif()
@@ -256,14 +256,13 @@ else( CMAKE_COMPILER_IS_GNUCXX )	# GNU C++ options
 endif()
 add_definitions( -DHAVE_CONFIG_H )
 
-configure_file( 
+configure_file(
     ${PROJECT_SOURCE_DIR}/config.h.cmake
     ${PROJECT_BINARY_DIR}/config.h )
 include_directories( ${PROJECT_BINARY_DIR} )
 include_directories( include )
 
 add_subdirectory( libsrc )
-add_subdirectory( nctest )
 if( ENABLE_NETCDF_4 )
     add_subdirectory( libsrc4 )
 endif()
